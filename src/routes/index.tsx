@@ -6,9 +6,9 @@ import { Sparkles } from "@/components/Sparkles";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sophie · XV Años · 19 Septiembre 2026" },
+      { title: "Marley · XV Años · 19 Septiembre 2026" },
       { name: "description", content: "Una noche mágica en el Salón de los Espejos. Acompáñame a celebrar mis XV años." },
-      { property: "og:title", content: "Sophie · XV Años · 19 Septiembre 2026" },
+      { property: "og:title", content: "Marley · XV Años · 19 Septiembre 2026" },
       { property: "og:description", content: "Una noche mágica en el Salón de los Espejos." },
     ],
   }),
@@ -42,10 +42,10 @@ function Index() {
             Mis
           </p>
           <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
-            Sophie
+            XV Años
           </h1>
           <p className="font-script text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
-            XV Años
+            Marley
           </p>
 
           <div className="my-6 flex items-center justify-center gap-4">
@@ -139,7 +139,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="relative py-12 px-4 text-center border-t border-primary/20">
-        <p className="font-script text-3xl text-gradient-gold">Sophie</p>
+        <p className="font-script text-3xl text-gradient-gold">Marley</p>
         <p className="mt-2 text-muted-foreground text-sm tracking-[0.3em] uppercase">
           XV Años · 19.09.2026
         </p>
