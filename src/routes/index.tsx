@@ -42,10 +42,10 @@ function Index() {
             Mis
           </p>
           <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
-            XV Años
+            Marley
           </h1>
           <p className="font-script text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
-            Marley
+            XV Años
           </p>
 
           <div className="my-6 flex items-center justify-center gap-4">
