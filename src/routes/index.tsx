@@ -6,9 +6,9 @@ import { Sparkles } from "@/components/Sparkles";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mis XV Años · 19 Septiembre 2026" },
+      { title: "Sophie · XV Años · 19 Septiembre 2026" },
       { name: "description", content: "Una noche mágica en el Salón de los Espejos. Acompáñame a celebrar mis XV años." },
-      { property: "og:title", content: "Mis XV Años · 19 Septiembre 2026" },
+      { property: "og:title", content: "Sophie · XV Años · 19 Septiembre 2026" },
       { property: "og:description", content: "Una noche mágica en el Salón de los Espejos." },
     ],
   }),
@@ -139,7 +139,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="relative py-12 px-4 text-center border-t border-primary/20">
-        <p className="font-script text-3xl text-gradient-gold">Sofía</p>
+        <p className="font-script text-3xl text-gradient-gold">Sophie</p>
         <p className="mt-2 text-muted-foreground text-sm tracking-[0.3em] uppercase">
           XV Años · 19.09.2026
         </p>
