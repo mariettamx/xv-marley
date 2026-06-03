@@ -42,21 +42,17 @@ function Index() {
             Mis
           </p>
           <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
-            XV
+            Sophie
           </h1>
           <p className="font-script text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
-            Años
+            XV Años
           </p>
 
-          <div className="my-8 flex items-center justify-center gap-4">
+          <div className="my-6 flex items-center justify-center gap-4">
             <span className="h-px w-16 bg-gradient-to-r from-transparent to-primary" />
-            <span className="text-primary text-xl tracking-[0.4em] uppercase">Sofía</span>
+            <span className="text-primary text-xl tracking-[0.4em] uppercase">19 · Septiembre · 2026</span>
             <span className="h-px w-16 bg-gradient-to-l from-transparent to-primary" />
           </div>
-
-          <p className="text-champagne/90 text-lg md:text-xl tracking-widest uppercase">
-            19 · Septiembre · 2026
-          </p>
 
           <div className="mt-12">
             <Countdown />
