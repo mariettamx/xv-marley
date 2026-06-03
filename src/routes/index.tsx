@@ -6,9 +6,9 @@ import { Sparkles } from "@/components/Sparkles";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mis XV Años · 19 Septiembre 2026" },
+      { title: "Sophie · XV Años · 19 Septiembre 2026" },
       { name: "description", content: "Una noche mágica en el Salón de los Espejos. Acompáñame a celebrar mis XV años." },
-      { property: "og:title", content: "Mis XV Años · 19 Septiembre 2026" },
+      { property: "og:title", content: "Sophie · XV Años · 19 Septiembre 2026" },
       { property: "og:description", content: "Una noche mágica en el Salón de los Espejos." },
     ],
   }),
@@ -42,21 +42,17 @@ function Index() {
             Mis
           </p>
           <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
-            XV
+            Sophie
           </h1>
           <p className="font-script text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
-            Años
+            XV Años
           </p>
 
-          <div className="my-8 flex items-center justify-center gap-4">
+          <div className="my-6 flex items-center justify-center gap-4">
             <span className="h-px w-16 bg-gradient-to-r from-transparent to-primary" />
-            <span className="text-primary text-xl tracking-[0.4em] uppercase">Sofía</span>
+            <span className="text-primary text-xl tracking-[0.4em] uppercase">19 · Septiembre · 2026</span>
             <span className="h-px w-16 bg-gradient-to-l from-transparent to-primary" />
           </div>
-
-          <p className="text-champagne/90 text-lg md:text-xl tracking-widest uppercase">
-            19 · Septiembre · 2026
-          </p>
 
           <div className="mt-12">
             <Countdown />
@@ -143,7 +139,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="relative py-12 px-4 text-center border-t border-primary/20">
-        <p className="font-script text-3xl text-gradient-gold">Sofía</p>
+        <p className="font-script text-3xl text-gradient-gold">Sophie</p>
         <p className="mt-2 text-muted-foreground text-sm tracking-[0.3em] uppercase">
           XV Años · 19.09.2026
         </p>
