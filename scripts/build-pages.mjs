@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const sourceDir = path.join(rootDir, '.output', 'public');
 const docsDir = path.join(rootDir, 'docs');
+const baseHref = process.env.GITHUB_PAGES_BASE_PATH || "/xv-marley/";
 
 async function ensureDirectory(dir) {
   await mkdir(dir, { recursive: true });
@@ -33,6 +34,7 @@ async function writeEntryHtml() {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Invitación de XV años de Marley" />
+    <base href="${baseHref}" />
     <title>Marley · XV Años</title>
     ${cssAsset ? `<link rel="stylesheet" href="./assets/${cssAsset}" />` : ''}
   </head>
