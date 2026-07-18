@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:pages": "node scripts/build-pages.mjs",
+    "build:pages": "GITHUB_PAGES_BASE_PATH=/xv-marley/ npm run build && GITHUB_PAGES_BASE_PATH=/xv-marley/ node scripts/build-pages.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -68,7 +68,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@lovable.dev/vite-tanstack-config": "2.7.6",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

@@ -1,36 +1,16 @@
-type LovableErrorOptions = {
-  mechanism?: "manual" | "onerror" | "unhandledrejection" | "react_error_boundary";
-  handled?: boolean;
-  severity?: "error" | "warning" | "info";
-};
-
-type LovableEvents = {
-  captureException?: (
-    error: unknown,
-    context?: Record<string, unknown>,
-    options?: LovableErrorOptions,
-  ) => void;
-};
+type AppErrorOptions = Record<string, unknown>;
 
 declare global {
   interface Window {
-    __lovableEvents?: LovableEvents;
+    __appErrorEvents?: { captureException?: (error: unknown, context?: AppErrorOptions) => void };
   }
 }
 
-export function reportLovableError(error: unknown, context: Record<string, unknown> = {}) {
+export function reportAppError(error: unknown, context: AppErrorOptions = {}) {
   if (typeof window === "undefined") return;
-  window.__lovableEvents?.captureException?.(
-    error,
-    {
-      source: "react_error_boundary",
-      route: window.location.pathname,
-      ...context,
-    },
-    {
-      mechanism: "react_error_boundary",
-      handled: false,
-      severity: "error",
-    },
-  );
+  window.__appErrorEvents?.captureException?.(error, {
+    source: "react_error_boundary",
+    route: window.location.pathname,
+    ...context,
+  });
 }

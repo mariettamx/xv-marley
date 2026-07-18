@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const sourceDir = path.join(rootDir, '.output', 'public');
+const sourceDir = path.join(rootDir, 'dist');
 const docsDir = path.join(rootDir, 'docs');
 const baseHref = process.env.GITHUB_PAGES_BASE_PATH || "/xv-marley/";
 
@@ -17,7 +17,11 @@ async function copyStaticFiles() {
   await ensureDirectory(docsDir);
   await rm(docsDir, { recursive: true, force: true });
   await mkdir(docsDir, { recursive: true });
-  await cp(sourceDir, docsDir, { recursive: true });
+
+  const entries = await readdir(sourceDir);
+  for (const entry of entries) {
+    await cp(path.join(sourceDir, entry), path.join(docsDir, entry), { recursive: true, force: true });
+  }
 }
 
 function pickAsset(files, pattern) {
