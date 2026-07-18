@@ -1,21 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import heroBg from "@/assets/versailles-hero.jpg";
 import { Countdown } from "@/components/Countdown";
 import { Sparkles } from "@/components/Sparkles";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Marley · XV Años · 19 Septiembre 2026" },
-      { name: "description", content: "Una noche mágica en el Salón de los Espejos. Acompáñame a celebrar mis XV años." },
-      { property: "og:title", content: "Marley · XV Años · 19 Septiembre 2026" },
-      { property: "og:description", content: "Una noche mágica en el Salón de los Espejos." },
-    ],
-  }),
-  component: Index,
-});
-
 
 interface FormState {
   nombre: string;
