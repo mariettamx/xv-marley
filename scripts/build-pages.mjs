@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -15,11 +15,13 @@ async function ensureDirectory(dir) {
 
 async function copyStaticFiles() {
   await ensureDirectory(docsDir);
+  await rm(docsDir, { recursive: true, force: true });
+  await mkdir(docsDir, { recursive: true });
   await cp(sourceDir, docsDir, { recursive: true });
 }
 
 function pickAsset(files, pattern) {
-  return files.find((file) => pattern.test(file)) || null;
+  return files.filter((file) => pattern.test(file)).sort((a, b) => b.localeCompare(a))[0] || null;
 }
 
 async function writeEntryHtml() {
