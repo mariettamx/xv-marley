@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, type FormEvent } from "react";
 import heroBg from "@/assets/versailles-hero.jpg";
 import { Countdown } from "@/components/Countdown";
 import { Sparkles } from "@/components/Sparkles";
@@ -15,7 +16,58 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+
+interface FormState {
+  nombre: string;
+  invitados: number;
+}
+
 function Index() {
+
+
+  const [formData, setFormData] = useState<FormState>({
+    nombre: '',
+    invitados: 0,
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [enviado, setEnviado] = useState<boolean>(false);
+
+  // Reemplaza esto con la URL que copiaste de Google Apps Script
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7OBmOKiwZwNBokAjmRJ2lrsWnbjxm42JPsONvHw58quaQdO9m_9oaejz_5ZeQzvJi/exec';
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Enviamos los datos como un POST tradicional en formato texto para evitar problemas de CORS
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Evita bloqueos de seguridad del navegador
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Nota: Con 'no-cors' la respuesta siempre vuelve vacía u 'opaque', 
+      // pero si no da error en el catch, significa que llegó a Google.
+      setEnviado(true);
+      setFormData({ nombre: '', invitados: 0 }); // Limpiar formulario
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      alert('Hubo un fallo al enviar los datos.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* HERO */}
@@ -38,9 +90,9 @@ function Index() {
         <Sparkles count={50} />
 
         <div className="relative z-10 text-center max-w-3xl mx-auto py-20">
-          <p className="font-script text-3xl md:text-5xl text-gradient-gold animate-float">
+          {/* <p className="font-script text-3xl md:text-5xl text-gradient-gold animate-float">
             Mis
-          </p>
+          </p> */}
           <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
             Marley
           </h1>
@@ -77,7 +129,7 @@ function Index() {
             y la compañía de mis padres
           </p>
           <p className="mt-3 font-display text-2xl md:text-3xl text-primary">
-            Jose Sanchez &nbsp;·&nbsp; Emily IIbarra
+            Jose Sanchez &nbsp;·&nbsp; Emily Ibarra
           </p>
           <p className="mt-8 text-champagne/80 text-lg leading-relaxed">
             tengo el honor de invitarte a celebrar mis
@@ -91,9 +143,9 @@ function Index() {
       <section className="relative py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
           {[
-            { title: "Misa", time: "4:00 PM", place: "CRUZ DEL APOSTOLADO", detail: "Esq. de la Hda del Yugo 1090 Villa de San Miguel " },
-            { title: "Recepción", time: "7:30 PM", place: "LOS ANGELES EVENTOS", detail: "Jardines del Palacio" },
-            { title: "Código", time: "Formal", place: "RESERVAMOS ROSA PARA XV AÑERA", detail: "" },
+            { title: "Misa", time: "4:00 PM", place: "Parroquia Cruz del Apostolado", detail: "Esq. de la Hda del Yugo 1090, Villa de San Miguel" },
+            { title: "Recepción", time: "7:30 PM", place: "Los Angeles Eventos", detail: "Jardines del Palacio" },
+            { title: "Código", time: "Formal", place: "Reservamos rosa para XV años", detail: "" },
           ].map((c) => (
             <div key={c.title} className="relative group">
               <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-xl rounded-2xl transition-opacity" />
@@ -117,23 +169,30 @@ function Index() {
           <p className="mt-4 text-champagne/80">
             Tu presencia es el mejor regalo. Por favor confirma antes del 1 de Septiembre.
           </p>
-          <form className="mt-8 space-y-4 text-left">
-            <input
-              className="w-full bg-background/60 border border-primary/40 rounded-full px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-              placeholder="Tu nombre"
-            />
-            <input
-              className="w-full bg-background/60 border border-primary/40 rounded-full px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-              placeholder="Número de invitados"
-              type="number"
-            />
-            <button
-              type="button"
-              className="w-full py-4 rounded-full bg-gradient-gold text-primary-foreground font-display tracking-[0.3em] uppercase text-sm shadow-glow hover:scale-[1.02] transition-transform"
-            >
-              Enviar Confirmación
-            </button>
-          </form>
+          {enviado ? (
+            <p style={{ color: 'white' }}>¡Confirmacion enviada exitosamente!</p>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-8 space-y-4 text-left">
+              <input
+                className="w-full bg-background/60 border border-primary/40 rounded-full px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
+                placeholder="Tu nombre"
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+              />
+              <input
+                className="w-full bg-background/60 border border-primary/40 rounded-full px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
+                placeholder="Número de invitados"
+                name="invitados"
+                value={formData.invitados}
+                onChange={handleChange}
+                type="number"
+              />
+                <button type="submit" disabled={loading}>
+                  {loading ? 'Enviando...' : 'Enviar Confirmacion'}
+                </button>
+            </form>
+          )}
         </div>
       </section>
 

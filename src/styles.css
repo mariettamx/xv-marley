@@ -36,8 +36,6 @@
   --font-body: "Cormorant Garamond", serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Pinyon+Script&family=Italiana&display=swap');
-
 :root {
   --radius: 0.5rem;
   --background: oklch(0.18 0.03 20);
