@@ -1,0 +1,63 @@
+import { cp, mkdir, readdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+const sourceDir = path.join(rootDir, '.output', 'public');
+const docsDir = path.join(rootDir, 'docs');
+
+async function ensureDirectory(dir) {
+  await mkdir(dir, { recursive: true });
+}
+
+async function copyStaticFiles() {
+  await ensureDirectory(docsDir);
+  await cp(sourceDir, docsDir, { recursive: true });
+}
+
+function pickAsset(files, pattern) {
+  return files.find((file) => pattern.test(file)) || null;
+}
+
+async function writeEntryHtml() {
+  const assetsDir = path.join(docsDir, 'assets');
+  const files = await readdir(assetsDir);
+  const jsAsset = pickAsset(files, /^index-.*\.js$/);
+  const cssAsset = pickAsset(files, /^styles-.*\.css$/);
+
+  const html = `<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Invitación de XV años de Marley" />
+    <title>Marley · XV Años</title>
+    ${cssAsset ? `<link rel="stylesheet" href="./assets/${cssAsset}" />` : ''}
+  </head>
+  <body>
+    <div id="root"></div>
+    ${jsAsset ? `<script type="module" src="./assets/${jsAsset}"></script>` : ''}
+  </body>
+</html>
+`;
+
+  await writeFile(path.join(docsDir, 'index.html'), html, 'utf8');
+
+  const notFoundHtml = `<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=./" />
+    <title>Redirecting…</title>
+  </head>
+  <body></body>
+</html>
+`;
+
+  await writeFile(path.join(docsDir, '404.html'), notFoundHtml, 'utf8');
+}
+
+await copyStaticFiles();
+await writeEntryHtml();
