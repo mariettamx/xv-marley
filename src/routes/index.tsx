@@ -77,11 +77,11 @@ function Index() {
             y la compañía de mis padres
           </p>
           <p className="mt-3 font-display text-2xl md:text-3xl text-primary">
-            Carlos Hernández &nbsp;·&nbsp; María Gómez
+            Jose Sanchez &nbsp;·&nbsp; Emily IIbarra
           </p>
           <p className="mt-8 text-champagne/80 text-lg leading-relaxed">
             tengo el honor de invitarte a celebrar mis
-            <span className="block mt-2 font-display text-3xl text-gradient-gold">Quince Primaveras</span>
+            <span className="block mt-2 font-display text-3xl text-gradient-gold">Quince Años</span>
           </p>
           <div className="mt-10 mx-auto w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
         </div>
@@ -91,9 +91,9 @@ function Index() {
       <section className="relative py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
           {[
-            { title: "Misa", time: "5:00 PM", place: "Catedral Metropolitana", detail: "Av. Reforma 123" },
-            { title: "Recepción", time: "7:00 PM", place: "Salón Versalles", detail: "Jardines del Palacio" },
-            { title: "Código", time: "Etiqueta Rigurosa", place: "Rose Gold · Champagne", detail: "Larga para damas" },
+            { title: "Misa", time: "4:00 PM", place: "CRUZ DEL APOSTOLADO", detail: "Esq. de la Hda del Yugo 1090 Villa de San Miguel " },
+            { title: "Recepción", time: "7:30 PM", place: "LOS ANGELES EVENTOS", detail: "Jardines del Palacio" },
+            { title: "Código", time: "Formal", place: "RESERVAMOS ROSA PARA XV AÑERA", detail: "" },
           ].map((c) => (
             <div key={c.title} className="relative group">
               <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-xl rounded-2xl transition-opacity" />
