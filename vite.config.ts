@@ -13,10 +13,15 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 
 export default defineConfig({
-nitro: {
-    preset: "static", 
-  },
   vite: {
     base: "/",
+    build: {
+      ssr: false
+    },
+    // Aquí es donde Vite sí reconoce y acepta la propiedad ssr
+    ssr: {
+      // Si es necesario pasar opciones específicas de SSR, van aquí,
+      // pero con dejarlo vacío o con el build.ssr es suficiente.
+    }
   }
 });
