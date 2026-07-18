@@ -22,7 +22,7 @@ interface FormState {
   invitados: number;
 }
 
-function Index() {
+export function Index() {
 
 
   const [formData, setFormData] = useState<FormState>({
