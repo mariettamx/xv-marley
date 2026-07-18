@@ -3,6 +3,12 @@ import heroBg from "@/assets/versailles-hero.jpg";
 import { Countdown } from "@/components/Countdown";
 import { Sparkles } from "@/components/Sparkles";
 
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/')({
+  component: Index,
+})
+
 interface FormState {
   nombre: string;
   invitados: number;
