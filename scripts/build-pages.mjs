@@ -32,7 +32,8 @@ async function writeEntryHtml() {
   const assetsDir = path.join(docsDir, 'assets');
   const files = await readdir(assetsDir);
   const jsAsset = pickAsset(files, /^index-.*\.js$/);
-  const cssAsset = pickAsset(files, /^styles-.*\.css$/);
+  const cssAsset = pickAsset(files, /^index-.*\.css$/);
+  const normalizedBaseHref = baseHref.endsWith('/') ? baseHref : `${baseHref}/`;
 
   const html = `<!doctype html>
 <html lang="es">
@@ -42,11 +43,11 @@ async function writeEntryHtml() {
     <meta name="description" content="Invitación de XV años de Marley" />
     <base href="${baseHref}" />
     <title>Marley · XV Años</title>
-    ${cssAsset ? `<link rel="stylesheet" href="./assets/${cssAsset}" />` : ''}
+    ${cssAsset ? `<link rel="stylesheet" href="${normalizedBaseHref}assets/${cssAsset}" />` : ''}
   </head>
   <body>
     <div id="root"></div>
-    ${jsAsset ? `<script type="module" src="./assets/${jsAsset}"></script>` : ''}
+    ${jsAsset ? `<script type="module" src="${normalizedBaseHref}assets/${jsAsset}"></script>` : ''}
   </body>
 </html>
 `;
