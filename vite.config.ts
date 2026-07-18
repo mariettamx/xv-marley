@@ -13,9 +13,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 
 export default defineConfig({
-  // Le decimos al compilador que prepare el proyecto específicamente para Vercel
-  nitro: {
-    preset: "vercel",
+nitro: {
+    preset: "static", 
   },
   vite: {
     base: "/",
