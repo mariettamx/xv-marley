@@ -93,6 +93,8 @@
     font-weight: 400;
     font-style: normal;
     padding:50px 0 30px 0;
+    font-size: 8rem;
+    letter-spacing: normal;
   }
   .font-cormorant-garamond {
     font-family: "Cormorant Garamond", serif;
