@@ -121,7 +121,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             y la compañía de mis padres
           </p>
           <p className="mt-3 font-display text-2xl md:text-3xl text-primary">
-            Jose Sanchez &nbsp;·&nbsp; Emily Ibarra
+            José Sánchez &nbsp;·&nbsp; Emily Ibarra
           </p>
           <p className="mt-8 text-champagne/80 text-lg leading-relaxed">
             tengo el honor de invitarte a celebrar mis
