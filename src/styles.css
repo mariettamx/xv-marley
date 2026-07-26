@@ -88,6 +88,18 @@
   .bg-gradient-gold { background: var(--gradient-rose-gold); }
   .font-script { font-family: var(--font-script); }
   .font-display { font-family: "Italiana", serif; }
+  .font-great-vibes {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    padding:50px 0 30px 0;
+  }
+  .font-cormorant-garamond {
+    font-family: "Cormorant Garamond", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
 
@@ -106,4 +118,43 @@
   .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
   .animate-float { animation: float 6s ease-in-out infinite; }
   .animate-flare { animation: flare 4s ease-in-out infinite; }
+}
+
+/* Override Tailwind gradient "via" stops to remove mid-color stop
+   This makes gradients transition directly from `from` to `to`, avoiding
+   semi-transparent "via" stops so overlayed text reads better on dark
+   backgrounds. Kept in source so regenerating Tailwind preserves it. */
+:root {
+  --tw-gradient-via-stops: var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+}
+
+/* Hero-specific gradient adjustments */
+.hero {
+  /* sensible defaults for hero gradients */
+  --tw-gradient-from-position: 0%;
+  --tw-gradient-via-position: 60%;
+  --tw-gradient-to-position: 100%;
+}
+
+/* Dark-mode: add a darker mid stop for hero overlays to improve text contrast */
+.dark .hero {
+  /* fallback in case overlay utility overrides the variable on the element */
+  --tw-gradient-via: rgba(0,0,0,0.7);
+  --tw-gradient-via-position: 60%;
+}
+
+/* Ensure the gradient variables are applied on the actual overlay element */
+.hero .hero-overlay {
+  --tw-gradient-from-position: var(--tw-gradient-from-position, 0%);
+  --tw-gradient-via-position: var(--tw-gradient-via-position, 60%);
+  --tw-gradient-to-position: var(--tw-gradient-to-position, 100%);
+  --tw-gradient-via-stops: var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-via-stops);
+}
+
+.dark .hero .hero-overlay {
+  --tw-gradient-via: rgba(0,0,0,0.7);
+  --tw-gradient-via-position: 60%;
+  --tw-gradient-via-stops: var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-via-stops);
 }

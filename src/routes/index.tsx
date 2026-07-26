@@ -63,7 +63,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
+      <section className="hero relative min-h-screen flex items-center justify-center px-4">
         <img
           src={heroBg}
           alt="Salón de los Espejos"
@@ -72,7 +72,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           height={1280}
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background" />
+        <div className="absolute inset-0 hero-overlay bg-gradient-to-b from-primary/10 via-transparent to-background" />
 
         {/* lens flares */}
         <div className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full bg-rose-gold/30 blur-[120px] animate-flare" />
@@ -85,10 +85,10 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           {/* <p className="font-script text-3xl md:text-5xl text-gradient-gold animate-float">
             Mis
           </p> */}
-          <h1 className="font-display text-[5rem] md:text-[9rem] leading-none text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
+          <h1 className="font-great-vibes text-[5rem] md:text-[9rem] leading-[0.8] md:pb-3 text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
             Marley
           </h1>
-          <p className="font-script text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
+          <p className="font-cormorant-garamond text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
             XV Años
           </p>
 
