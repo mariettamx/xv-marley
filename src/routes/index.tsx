@@ -86,7 +86,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             Mis
           </p> */}
           <h1 className="font-great-vibes text-[5rem] md:text-[9rem] leading-[0.8] md:pb-3 text-gradient-gold drop-shadow-[0_4px_30px_oklch(0.78_0.13_45/0.6)]">
-            Marley
+            Marley Sophia
           </h1>
           <p className="font-cormorant-garamond text-3xl md:text-5xl text-gradient-gold -mt-2 animate-float" style={{ animationDelay: "1s" }}>
             XV Años
@@ -137,7 +137,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           {[
             { title: "Misa", time: "4:00 PM", place: "Parroquia Cruz del Apostolado", detail: "Esq. de la Hda del Yugo 1090, Villa de San Miguel" },
             { title: "Recepción", time: "7:30 PM", place: "Los Angeles Eventos", detail: "Jardines del Palacio" },
-            { title: "Código", time: "Formal", place: "Reservamos rosa para XV años", detail: "" },
+            { title: "Código", time: "Formal", place: "Reservamos el color rosa para la XV añera", detail: "" },
           ].map((c) => (
             <div key={c.title} className="relative group">
               <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-xl rounded-2xl transition-opacity" />
