@@ -136,8 +136,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
           {[
             { title: "Misa", time: "4:00 PM", place: "Parroquia Cruz del Apostolado", detail: "Esq. de la Hda del Yugo 1090, Villa de San Miguel" },
-            { title: "Recepción", time: "7:30 PM", place: "Los Angeles Eventos", detail: "Jardines del Palacio" },
-            { title: "Código", time: "Formal", place: "Reservamos el color rosa para la XV añera", detail: "" },
+            { title: "Recepción", time: "7:30 PM", place: "Los Angeles Eventos", detail: "Av. Los Angeles 1000, Mercado de Abastos Estrella, 66482 San Nicolás de los Garza, N.L." },
+            { title: "Código", time: "Formal", place: "Reservamos el color rosa para la quinceañera", detail: "" },
           ].map((c) => (
             <div key={c.title} className="relative group">
               <div className="absolute inset-0 bg-gradient-gold opacity-0 group-hover:opacity-20 blur-xl rounded-2xl transition-opacity" />
