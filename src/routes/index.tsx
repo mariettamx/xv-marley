@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/versailles-hero.jpg";
 import { Countdown } from "@/components/Countdown";
 import { Sparkles } from "@/components/Sparkles";
@@ -15,17 +15,64 @@ interface FormState {
 }
 
 export function Index() {
-
-
   const [formData, setFormData] = useState<FormState>({
     nombre: '',
     invitados: 0,
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [enviado, setEnviado] = useState<boolean>(false);
+  const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Reemplaza esto con la URL que copiaste de Google Apps Script
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7OBmOKiwZwNBokAjmRJ2lrsWnbjxm42JPsONvHw58quaQdO9m_9oaejz_5ZeQzvJi/exec';
+  const BACKGROUND_AUDIO_URL = 'https://drive.google.com/uc?export=download&id=190K7TOuaFltKYow3vW6zIxcVrJpLeEzA';
+
+  useEffect(() => {
+    const audio = new Audio(BACKGROUND_AUDIO_URL);
+    audio.loop = true;
+    audio.volume = 0.25;
+    audio.preload = 'auto';
+    audioRef.current = audio;
+
+    const startAudio = async () => {
+      if (!audioRef.current || audioPlaying) return;
+
+      try {
+        await audioRef.current.play();
+        setAudioPlaying(true);
+      } catch (error) {
+        console.warn('No se pudo iniciar el audio de fondo:', error);
+      }
+    };
+
+    window.addEventListener('pointerdown', startAudio, { once: true });
+    window.addEventListener('keydown', startAudio, { once: true });
+
+    return () => {
+      audio.pause();
+      audio.src = '';
+      window.removeEventListener('pointerdown', startAudio);
+      window.removeEventListener('keydown', startAudio);
+    };
+  }, [audioPlaying]);
+
+  const toggleAudio = async () => {
+    if (!audioRef.current) return;
+
+    if (audioPlaying) {
+      audioRef.current.pause();
+      setAudioPlaying(false);
+      return;
+    }
+
+    try {
+      await audioRef.current.play();
+      setAudioPlaying(true);
+    } catch (error) {
+      console.warn('No se pudo iniciar el audio de fondo:', error);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -102,12 +149,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <Countdown />
           </div>
 
-          <a
-            href="#rsvp"
-            className="inline-block mt-12 px-10 py-4 rounded-full bg-gradient-gold text-primary-foreground font-display tracking-[0.3em] uppercase text-sm shadow-glow hover:scale-105 transition-transform"
-          >
-            Confirmar Asistencia
-          </a>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#rsvp"
+              className="inline-block px-10 py-4 rounded-full bg-gradient-gold text-primary-foreground font-display tracking-[0.3em] uppercase text-sm shadow-glow hover:scale-105 transition-transform"
+            >
+              Confirmar Asistencia
+            </a>
+          </div>
         </div>
       </section>
 
@@ -195,6 +244,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           XV Años · 19.09.2026
         </p>
       </footer>
+
+      <div className="flex justify-center pb-8">
+        <button
+          type="button"
+          onClick={toggleAudio}
+          className="rounded-full border border-primary/30 bg-background/70 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-primary backdrop-blur transition hover:scale-105"
+        >
+          {audioPlaying ? '🔊 On' : '🔈 Sonido'}
+        </button>
+      </div>
     </main>
   );
 }
